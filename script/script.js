@@ -341,5 +341,45 @@ window.addEventListener('DOMContentLoaded', function(){
     };
 
     slider();
+
+    // Блок "Наша команда" (lesson 23)
+    const changeCommandPhoto = () => {
+        const command = document.getElementById('command');
+        
+        command.addEventListener('mouseover', (event) => {
+            let target = event.target,
+                targetMainSrc = target.getAttribute('src'),
+                targetDataImg = target.getAttribute('data-img');
+
+            if (target.closest('.command')) {
+                target.src = targetDataImg;
+
+                command.addEventListener('mouseout', (event) => {
+                    target.src = targetMainSrc;
+                });
+            }
+        });
+    };
+
+    changeCommandPhoto();
+
+    // Блок с калькулятором
+
+    const calc = () => {
+        const calcSquare = document.querySelector('.calc-square'),
+            calcCount = document.querySelector('.calc-count'),
+            calcDay = document.querySelector('.calc-day');
+
+        let checkInputValue = () => {
+            let target = event.target;
+            target.value = target.value.replace(/\D/g, '');
+        };
+
+        calcSquare.addEventListener('input', checkInputValue); 
+        calcCount.addEventListener('input', checkInputValue); 
+        calcDay.addEventListener('input', checkInputValue); 
+    };
+
+    calc();
 });
 
